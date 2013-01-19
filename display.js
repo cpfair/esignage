@@ -1,146 +1,151 @@
+var Display = {};
+
 $(document).ready(function(){
 	
-	SetConfig("Reload",false);//unset
+	Shared.SetConfig("Reload",false);//unset
 	
-	CurrentImg=$("#signageImg").attr("src");
+	Display.CurrentImage=$("#signageImg").attr("src");
 });
+
 $(window).load(function(){
 	$("#containment").css("height",$("#signageImg").outerHeight()+"px");
 	$("#containment").css("width",$("#signageImg").outerWidth()+"px");
-	Update();
-	setInterval(Update,1500);
-	setInterval(FlashBorder,500);
+	Display.Update();
+	setInterval(Display.Update,1500);
+	setInterval(Display.FlashBorder,500);
 	
 });
-var FirstLoad=true;
-var CurrentImg="";
-var OldMessageBar="";
 
-var FlashTimer;
-var FlashRate;
+Display.FirstLoad=true;
+Display.CurrentImage="";
+Display.OldMessageBarContents="";
 
-var DoFlashBorder=false;
-var FlashBorderState=false;
+Display.DoFlashBorder=false;
+Display.FlashBorderState=false;
 
-function Update(){
-	LoadConfig(UpdateLoaded);
-}
+Display.Update = function(){
+	Shared.LoadConfig(Display.UpdateLoaded);
+};
 
-function UpdateLoaded(){
+Display.UpdateLoaded = function(){
 	
-	if (GetConfig("Reload")){
-		UIReload();
-		UpdateLoaded=function(){};//stop doing stuff
+	if (Shared.GetConfig("Reload")){
+		Display.Reload();
+		Display.UpdateLoaded=function(){};//stop doing stuff
 	} else {
-		if (GetConfig("Black")){
-			if (FirstLoad){
+		if (Shared.GetConfig("Black")){
+			if (Display.FirstLoad){
 				$("#loadingCover").fadeIn(1000);
 			} else {
 				$("#loadingCover").show();//make sure it's not diplayed
-				FirstLoad=false;
+				Display.FirstLoad=false;
 			}
-		} else if (FirstLoad==false) {//not to mess this up
+		} else if (Display.FirstLoad==false) {//not to mess this up
 			$("#loadingCover").fadeOut(1000);
 		}
-		if (GetConfig("Src")!=CurrentImg && GetConfig("Src")!==undefined){
-			UIReload();//to avoid ugly loading artefacts (sp?)
+		if (Shared.GetConfig("Src")!=Display.CurrentImage && Shared.GetConfig("Src")!==undefined){
+			Display.Reload();//to avoid ugly loading artefacts (sp?)
 		}
-		if (GetConfig("MessageBar")){
-			if (GetConfig("MessageBarBottom")){
+		if (Shared.GetConfig("MessageBar")){
+			if (Shared.GetConfig("MessageBarBottom")){
 				$("#messagingBar").addClass("messagingBarBottom");
 			} else {
 				$("#messagingBar").removeClass("messagingBarBottom");
 			}
-			if (OldMessageBar!=GetConfig("MessageBarText")){
-				OldMessageBar=GetConfig("MessageBarText");
+			if (Display.OldMessageBarContents!=Shared.GetConfig("MessageBarText")){
+				Display.OldMessageBarContents=Shared.GetConfig("MessageBarText");
 				$("#messagingBar").fadeOut(function(){
-					$("#messagingBar").html(GetConfig("MessageBarText"));
+					$("#messagingBar").html(Shared.GetConfig("MessageBarText"));
 					$("#messagingBar").fadeIn();
 				});
 			} else {
-				$("#messagingBar").fadeIn();	
+				$("#messagingBar").fadeIn();
 			}
 		} else {
 			$("#messagingBar").fadeOut();
 		}
 		
-		if (GetConfig("Emerg")){
+		if (Shared.GetConfig("Emerg")){
 			$("#messagingCover").fadeIn();
-			$("#messagingCover td").html(GetConfig("EmergText"));
-			var NewFlashRate=0;
-			var AltTheme=false;
-			DoFlashBorder=false;
-			switch (GetConfig("EmergProfile")){
+			$("#messagingCover td").html(Shared.GetConfig("EmergText"));
+			var newFlashRate=0;
+			var altTheme=false;
+			Display.DoFlashBorder=false;
+			switch (Shared.GetConfig("EmergProfile")){
 				case "normal":
 					//...
 				break;
 				case "flash15":
-					NewFlashRate=15000;
+					newFlashRate=15000;
 				break;
 				case "flash5":
-					NewFlashRate=5000;
+					newFlashRate=5000;
 				break;
 				case "emerg":
-					NewFlashRate=5123;
-					AltTheme=true;
-					DoFlashBorder=true;
+					newFlashRate=5123;
+					altTheme=true;
+					Display.DoFlashBorder=true;
 				break;
 			}
-			if (AltTheme){
+			if (altTheme){
 				$("#messagingCover").addClass("srsmode");
 			} else {
 				$("#messagingCover").removeClass("srsmode");
 			}
-			if (NewFlashRate>0){
-				if (FlashRate!=NewFlashRate){
-					SetupFlash(NewFlashRate);
-					FlashRate=NewFlashRate;
+			if (newFlashRate>0){
+				if (Display.FlashRate!=newFlashRate){
+					Display.SetupFlash(newFlashRate);
+					Display.FlashRate=newFlashRate;
 				}
 			} else {
-				if (FlashTimer) {clearInterval(FlashTimer);FlashTimer=null;}
+				if (Display.FlashTimer) {clearInterval(Display.FlashTimer);Display.FlashTimer=null;}
 			}
 		} else {
 			$("#messagingCover").fadeOut();
-			if (FlashTimer) {clearInterval(FlashTimer);FlashTimer=null;}
-			DoFlashBorder=false;
+			if (Display.FlashTimer) {clearInterval(Display.FlashTimer);Display.FlashTimer=null;}
+			Display.DoFlashBorder=false;
 		}
 	}
 	
-	if (FirstLoad){
-		FirstLoad=false;
+	if (Display.FirstLoad){
+		Display.FirstLoad=false;
 		setTimeout(function(){
 			$("#loadingCover").fadeOut(1000);
 		},500);
 		
 	}
 	
-}
-function FlashBorder(){
-	if (DoFlashBorder){
-		FlashBorderState=!FlashBorderState;
-		if (FlashBorderState){
+};
+
+Display.FlashBorder=function(){
+	if (Display.DoFlashBorder){
+		Display.FlashBorderState=!Display.FlashBorderState;
+		if (Display.FlashBorderState){
 			$("#messagingCover").addClass("altBorder");
 		} else {
 			$("#messagingCover").removeClass("altBorder");
 		}
 		
 	}
-}
-function SetupFlash(interval){
-	if (FlashTimer) {clearInterval(FlashTimer);FlashTimer=null;}
-	FlashTimer=setInterval(FlashScreen,interval);
-	FlashScreen();
-}
-function FlashScreen(){
+};
+
+Display.SetupFlash = function(interval){
+	if (Display.FlashTimer) {clearInterval(Display.FlashTimer);Display.FlashTimer=null;}
+	Display.FlashTimer=setInterval(Display.FlashScreen,interval);
+	Display.FlashScreen();
+};
+
+Display.FlashScreen = function(){
 	$("#flashCover").show();
 	$("#flashCover").fadeOut(400);
-}
+};
 
-function UIReload(){
+Display.Reload = function(){
 	$("#loadingCover").fadeIn(1000,function(){
-		setTimeout(PageReload,100);
+		setTimeout(Display.PageReload,100);
 	});
-}
-function PageReload(){
+};
+
+Display.PageReload = function(){
 	window.location="?"+(new Date()).getTime();
-}
+};
