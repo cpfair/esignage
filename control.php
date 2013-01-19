@@ -37,6 +37,7 @@ $imgs=glob("signage/*.*"); //exclude the placeholder file
 			<h1>Signage Control</h1>
 			<div class="group">
 				<h2>Set Image</h2>
+				<img id="previewImg"/>
 				<select id="imgSelect">
 					<?php
 					foreach ($imgs as $img){

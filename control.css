@@ -93,3 +93,10 @@ input[type=button].active {
 	width:600px;
 	margin-right:2px;
 }
+
+#previewImg {
+	max-width:200px;
+	max-height:200px;
+	display:block;
+	margin-bottom:5px;
+}

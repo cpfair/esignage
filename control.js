@@ -5,6 +5,8 @@ $(document).ready(function(){
 	$("#emergMsg").bind("keypress",function(e){EnterHandler(e,SetEmerg);});
 	$("#messageBarMsg").bind("keypress",function(e){EnterHandler(e,SetMessageBar);});
 	
+	$("#imgSelect").change(UIPreviewImage);
+	UIPreviewImage();
 });
 function EnterHandler(e,handler){
 	var code = (e.keyCode ? e.keyCode : e.which);
@@ -24,6 +26,10 @@ function SetMessageBar(){
 function SetEmerg(){
 	UISetConfig("EmergText",$("#emergMsg").val());
 	UISetConfig("Emerg",true);
+}
+
+function UIPreviewImage(){
+	$("#previewImg").attr("src",$("#imgSelect").val());
 }
 
 function UISetConfig(k,v){
