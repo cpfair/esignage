@@ -17,8 +17,7 @@ $val=$_GET["val"];
 $config->$key=$val;
 
 ftruncate($resource,0);
-fclose($resource);
-$resource=fopen("config.json","w");
-flock($resource,LOCK_EX);
+fseek($resource,0);
+
 fwrite($resource,json_encode($config));
 fclose($resource);
