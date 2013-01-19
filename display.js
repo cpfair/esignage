@@ -3,13 +3,10 @@ $(document).ready(function(){
 	SetConfig("Reload",false);//unset
 	
 	CurrentImg=$("#signageImg").attr("src");
-	
-	
 });
 $(window).load(function(){
 	$("#containment").css("height",$("#signageImg").outerHeight()+"px");
 	$("#containment").css("width",$("#signageImg").outerWidth()+"px");
-	
 	Update();
 	setInterval(Update,1500);
 	setInterval(FlashBorder,500);
@@ -45,8 +42,8 @@ function UpdateLoaded(){
 		} else if (FirstLoad==false) {//not to mess this up
 			$("#loadingCover").fadeOut(1000);
 		}
-		if (GetConfig("Src")!=CurrentImg){
-			UIReload();//to avoid ugly loading artefacts
+		if (GetConfig("Src")!=CurrentImg && GetConfig("Src")!==undefined){
+			UIReload();//to avoid ugly loading artefacts (sp?)
 		}
 		if (GetConfig("MessageBar")){
 			if (GetConfig("MessageBarBottom")){
@@ -60,8 +57,9 @@ function UpdateLoaded(){
 					$("#messagingBar").html(GetConfig("MessageBarText"));
 					$("#messagingBar").fadeIn();
 				});
+			} else {
+				$("#messagingBar").fadeIn();	
 			}
-			
 		} else {
 			$("#messagingBar").fadeOut();
 		}
@@ -144,5 +142,5 @@ function UIReload(){
 	});
 }
 function PageReload(){
-	window.location="/?"+(new Date()).getTime();
+	window.location="?"+(new Date()).getTime();
 }

@@ -1,5 +1,12 @@
 <?php
-$config=json_decode(file_get_contents("config.json"));
+$config=@json_decode(@file_get_contents("config.json"));
+if ($config==null){
+	//will keep everyone satisfied for now
+	$config=new stdClass;
+	$config->Black=true;
+	$config->Snow=false;
+	$config->Src="";
+}
 ?>
 <!doctype html>
 <html>
@@ -10,7 +17,7 @@ $config=json_decode(file_get_contents("config.json"));
 	
 	<script type="text/javascript" src="shared.js"></script>
 	<script type="text/javascript" src="display.js"></script>
-	<?php if ($config->snow=="true"){?>
+	<?php if (@$config->Snow=="true"){?>
 	<script type="text/javascript" src="snowstorm.js"></script>
 	<?php } ?>
 </head>
@@ -18,10 +25,10 @@ $config=json_decode(file_get_contents("config.json"));
 	<div id="loadingCover"></div>
 	<div id="containment">
 		<div id="flashCover"></div>
-		<div id="messagingCover"><table><tr><td>WBlack Black Black Blasdasjdh esuryius ndhgfdjhg</td></tr></table></div>
+		<div id="messagingCover"><table><tr><td></td></tr></table></div>
 		
-		<div id="messagingBar" >The signage is broken</div>
-		<div id="imgHolder"><img src="<?php echo $config->src;?>" id="signageImg"/></div>
+		<div id="messagingBar" ></div>
+		<div id="imgHolder"><img src="<?php echo @$config->Src;?>" id="signageImg"/></div>
 	</div>
 </body>
 </html>
