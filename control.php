@@ -1,4 +1,15 @@
 <?php
+include "lock.php";
+Lock::Check();
+if (Lock::$Lockout){
+	die("The control panel is locked");
+} else {
+	if (!Lock::$Locked && isset($_GET["lock"])){
+		Lock::SetLock();
+	} elseif (Lock::$Locked && isset($_GET["unlock"])) {
+		Lock::UnsetLock();
+	}
+}
 
 $config=@json_decode(file_get_contents("config.json"));
 if ($config==null){
@@ -6,8 +17,8 @@ if ($config==null){
 	file_put_contents("config.json", json_encode($config));
 }
 
-$imgs=glob("signage/*.*"); //exclude the placeholder file
 
+$imgs=glob("signage/*.*"); //exclude the placeholder file
 
 ?>
 <!doctype html>
@@ -52,6 +63,15 @@ $imgs=glob("signage/*.*"); //exclude the placeholder file
 				<input type="text" id="emergMsg" value="<?php echo @$config->EmergText;?>"/><input type="button" value="Set &raquo;" onclick="SetEmerg();"/><input type="button" value="Turn Off" onclick="UISetConfig('Emerg',false);"/><br/>
 				<input type="button" value="Normal" id="btnProfilenormal" onclick="UISetConfig('EmergProfile','normal')"/><input type="button" value="Slow Flash" onclick="UISetConfig('EmergProfile','flash15')" id="btnProfileflash15"/><input type="button" value="Fast Flash" onclick="UISetConfig('EmergProfile','flash5')" id="btnProfileflash5"/><input type="button" value="Urgent" onclick="UISetConfig('EmergProfile','emerg')" id="btnProfileemerg"/>
 			</div>
+			<?php if (Lock::$Locked) { ?>
+			<div class="group">
+				<h2>Control Panel Lock</h2>
+				The control panel will be locked until <?php echo date("g:i A",Lock::$UnlockTime).(date("Ymd",time())!=date("Ymd",Lock::$UnlockTime)?" tomorrow":" today");?>
+				<input type="button" value="Unlock Now" id="btnProfilenormal" onclick="window.location='?unlock=1'"/> <!-- should be a link styled as a button -->
+			</div>
+			<?php } else { ?>
+			<a href="?lock=1" style="color:white;font-size:50%;position:absolute;" onclick="confirm('Locking the control panel will prevent it from being used from a different browser or computer for the next 24 hours. Do you wish to continue?')">Lock control panel</a>
+			<?php } ?>
 		</div>
 	</div>
 </body>

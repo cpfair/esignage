@@ -27,7 +27,7 @@ input[type=button] {
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:1px 1px 0 #ffffff;
-
+	cursor:pointer;
 }
 input[type=button]:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );

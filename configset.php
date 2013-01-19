@@ -1,5 +1,7 @@
 <?php
-
+include "lock.php";
+Lock::Check();
+if (Lock::$Lockout) die;
 
 $resource=fopen("config.json","r+");
 flock($resource,LOCK_EX);

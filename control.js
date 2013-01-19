@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	//$("#imgSelect").change(SetImage);
 		
 	LoadConfig(UISyncState);
 	
