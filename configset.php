@@ -1,7 +1,7 @@
 <?php
 include "lock.php";
 Lock::Check();
-if (Lock::$Lockout) die;
+if (Lock::$Lockout && $_GET["key"]!="Reload") die; //signage has to be able to set this
 
 $resource=fopen("config.json","r+");
 flock($resource,LOCK_EX);

@@ -71,7 +71,7 @@ $imgs=glob("signage/*.*"); //exclude the placeholder file
 				<input type="button" value="Unlock Now" id="btnProfilenormal" onclick="window.location='?unlock=1'"/> <!-- should be a link styled as a button -->
 			</div>
 			<?php } else { ?>
-			<a href="?lock=1" style="color:white;font-size:50%;position:absolute;" onclick="confirm('Locking the control panel will prevent it from being used from a different browser or computer for the next 24 hours. Do you wish to continue?')">Lock control panel</a>
+			<a href="?lock=1" style="color:white;font-size:50%;position:absolute;" onclick="return confirm('Locking the control panel will prevent it from being used from a different browser or computer for the next 24 hours. Do you wish to continue?')">Lock control panel</a>
 			<?php } ?>
 		</div>
 	</div>

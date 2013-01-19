@@ -4,7 +4,7 @@ class Lock {
 	static $Lockout = false;
 	static $Locked = false;
 	static $UnlockTime = 0;
-	private static $LockDuration = 60;
+	private static $LockDuration = 86400;
 	static function Check(){
 		//lock handling
 		self::$Locked = file_exists("control.lock.php") && filemtime("control.lock.php")>time()-self::$LockDuration;
