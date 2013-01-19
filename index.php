@@ -11,14 +11,14 @@ if ($config==null){
 <!doctype html>
 <html>
 <head>
-	<link rel="stylesheet" href="display.css">
+	<link rel="stylesheet" href="css/display.css">
 	<title>Digital Signage Player</title>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="js/jquery-1.9.0.min.js"></script>
 	
-	<script type="text/javascript" src="shared.js"></script>
-	<script type="text/javascript" src="display.js"></script>
+	<script type="text/javascript" src="js/shared.js"></script>
+	<script type="text/javascript" src="js/display.js"></script>
 	<?php if (@$config->Snow=="true"){?>
-	<script type="text/javascript" src="snowstorm.js"></script>
+	<script type="text/javascript" src="js/snowstorm.js"></script>
 	<?php } ?>
 </head>
 <body>

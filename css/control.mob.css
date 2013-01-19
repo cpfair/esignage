@@ -1,0 +1,64 @@
+body {
+	margin:0;
+}
+#container {
+	
+	margin:10px;
+	width:auto;
+	height:100%;
+	
+}
+#containerInner {
+	padding:5px;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+h1 {
+	display:none;
+}
+.group {
+	position:relative;
+}
+.textWrap {
+	display:block;
+	position:relative;
+	left:0;
+	right:0;
+	margin-right:22px;
+	
+}
+.fineprint {
+	display:none;
+}
+#footer {
+	display:none;
+}
+input[type=button] {
+	width:100%;
+	margin:1px 0;
+	display:inline-block;
+}
+input[type=text] {
+	
+	
+	
+	width:100% !important;
+	
+	margin-right:0 !important;
+	position:relative;
+	display:block;
+}
+hr {
+	display:block;
+	position:relative;
+	border:none;
+	border-top:1px dashed #ccc;
+	height:0px;
+	
+	
+	margin:3px 7%;
+}
+#ovvrGroup {/*hax*/
+	
+	margin-bottom:0;
+}

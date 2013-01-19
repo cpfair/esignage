@@ -1,6 +1,7 @@
 <?php
 include "lock.php";
 Lock::Check();
+
 if (Lock::$Lockout){
 	die("The control panel is locked");
 } else {
@@ -17,18 +18,17 @@ if ($config==null){
 	file_put_contents("config.json", json_encode($config));
 }
 
-
 $imgs=glob("signage/*.*"); //exclude the placeholder file
 
 ?>
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" href="control.css">
-<link rel="text/css" href="control.mob.css" media="only screen and (max-width: 480px)" >
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="shared.js"></script>
-<script type="text/javascript" src="control.js"></script>
+<link rel="stylesheet" href="css/control.css">
+<link rel="text/css" href="css/control.mob.css" media="only screen and (max-width: 480px)" >
+<script src="js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="js/shared.js"></script>
+<script type="text/javascript" src="js/control.js"></script>
 </head>
 <body>
 	<div id="loadingModal"><table><tr><td></td></tr></table></div>
