@@ -56,12 +56,12 @@ $imgs=glob("signage/*.*"); //exclude the placeholder file
 			</div>
 			<div class="group">
 				<h2>Message Bar</h2>
-				<input type="text" id="messageBarMsg" value="<?php echo @$config->MessageBarText;?>"/><input type="button" value="Set &raquo;" onclick="SetMessageBar();"/><input type="button" value="Turn Off" onclick="UISetConfig('MessageBar',false)"/><br/>
+				<input type="text" id="messageBarMsg" value="<?php echo @$config->MessageBarText;?>"/><input type="button" value="Set &raquo;" onclick="SetMessageBar();" id="btnEnableMsgBar"/><input type="button" value="Turn Off" onclick="UISetConfig('MessageBar',false)" id="btnDisableMsgBar"/><br/>
 				<input type="button" id="msgBarTop" value="Show Top" onclick="UISetConfig('MessageBarBottom',false)"/><input type="button" onclick="UISetConfig('MessageBarBottom',true)" id="msgBarBottom" value="Show Bottom"/>
 			</div>
 			<div class="group" id="ovvrGroup">
 				<h2>Override</h2>
-				<input type="text" id="emergMsg" value="<?php echo @$config->EmergText;?>"/><input type="button" value="Set &raquo;" onclick="SetEmerg();"/><input type="button" value="Turn Off" onclick="UISetConfig('Emerg',false);"/><br/>
+				<input type="text" id="emergMsg" value="<?php echo @$config->EmergText;?>"/><input type="button" value="Set &raquo;" onclick="SetEmerg();" id="btnEnableEmerg"/><input type="button" value="Turn Off" onclick="UISetConfig('Emerg',false);" id="btnDisableEmerg"/><br/>
 				<input type="button" value="Normal" id="btnProfilenormal" onclick="UISetConfig('EmergProfile','normal')"/><input type="button" value="Slow Flash" onclick="UISetConfig('EmergProfile','flash15')" id="btnProfileflash15"/><input type="button" value="Fast Flash" onclick="UISetConfig('EmergProfile','flash5')" id="btnProfileflash5"/><input type="button" value="Urgent" onclick="UISetConfig('EmergProfile','emerg')" id="btnProfileemerg"/>
 			</div>
 			<?php if (Lock::$Locked) { ?>

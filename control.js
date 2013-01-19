@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 		
 	LoadConfig(UISyncState);
@@ -8,6 +9,7 @@ $(document).ready(function(){
 	$("#imgSelect").change(UIPreviewImage);
 	UIPreviewImage();
 });
+
 function EnterHandler(e,handler){
 	var code = (e.keyCode ? e.keyCode : e.which);
 	if(code == 13) { //Enter keycode
@@ -33,16 +35,14 @@ function UIPreviewImage(){
 }
 
 function UISetConfig(k,v){
-	$("#container").fadeTo(300,0.25,function(){UISyncState();});
+	
 	$("#loadingModal").show();
-	return SetConfig(k,v,UIFinishedLoading);
+	var res=SetConfig(k,v,UIFinishedLoading);
+	UISyncState();
+	return res;
 }
 
 function UIFinishedLoading(){
-	$("#container").fadeTo(300,1,function(){
-
-	});
-	
 	$("#loadingModal").hide();
 }
 
@@ -66,10 +66,12 @@ function UISyncState(){
 	}
 	
 	UIToggle(GetConfig("Snow"),"btnSnow","btnNoSnow");
+
+	UIToggle(GetConfig("MessageBar"),"btnEnableMsgBar","btnDisableMsgBar");
 	
 	UIToggle(GetConfig("MessageBarBottom"),"msgBarBottom","msgBarTop");
 	
 	$("#ovvrGroup input").removeClass("active");
 	$("#btnProfile"+GetConfig("EmergProfile")).addClass("active");
-
+	UIToggle(GetConfig("Emerg"),"btnEnableEmerg","btnDisableEmerg");
 }
