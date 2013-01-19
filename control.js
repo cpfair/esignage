@@ -58,6 +58,8 @@ Control.UIToggleSet = function(bool,idOn,idOff){
 };
 
 Control.SyncUI = function(){
+	$("#imgSelect").val(Shared.GetConfig("Src"));
+	Control.PreviewImage();
 	
 	if (Shared.GetConfig("Black")){
 		$("#btnOff").addClass("active");
