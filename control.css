@@ -1,0 +1,95 @@
+body {
+	margin:0;
+	padding:0;
+	font-family:Segoe UI,Arial,sans serif;
+	background-color:#eee;
+	
+}
+select,input {
+	font-size:20px;
+}
+input[type=button] {
+	display:inline-block;
+	font-size:15px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	color:#555;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0 #ffffff;
+
+}
+input[type=button]:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}
+input[type=button]:active {
+	position:relative;
+	top:1px;
+}
+input[type=button].active {
+	border-color:#777;
+}
+#loadingModal {
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	z-index:100;
+	display:none;
+	color:#fff;
+	font-size:55px;
+}
+#loadingModal table {
+	width:100%;
+	height:100%;
+	text-align:center;
+}
+#container {
+	position:relative;
+	background-color:#fff;
+	border-radius:5px;
+	width:960px;
+	margin:30px auto;
+	font-size:19px;
+}
+
+#containerInner {
+	
+	padding:15px;
+	padding-top:0;
+	position:relative;
+}
+
+.group {
+	position:relative;
+	margin-left:10px;
+	margin-right:10px;
+	border-radius:5px;
+	padding:10px;
+	
+	background-color:#eaeaea;
+	margin-bottom:15px;
+}
+.group h2 {
+	margin-top:0;
+	margin-bottom:3px;
+}
+
+#messageBarMsg, #emergMsg {
+	width:600px;
+	margin-right:2px;
+}
