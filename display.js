@@ -27,8 +27,6 @@ var FlashBorderState=false;
 
 function Update(){
 	LoadConfig(UpdateLoaded);
-	
-	
 }
 
 function UpdateLoaded(){
@@ -47,7 +45,7 @@ function UpdateLoaded(){
 		} else if (FirstLoad==false) {//not to mess this up
 			$("#loadingCover").fadeOut(1000);
 		}
-		if (GetConfig("src")!=CurrentImg){
+		if (GetConfig("Src")!=CurrentImg){
 			UIReload();//to avoid ugly loading artefacts
 		}
 		if (GetConfig("MessageBar")){
@@ -76,14 +74,12 @@ function UpdateLoaded(){
 			DoFlashBorder=false;
 			switch (GetConfig("EmergProfile")){
 				case "normal":
-					
+					//...
 				break;
 				case "flash15":
-					
 					NewFlashRate=15000;
 				break;
 				case "flash5":
-					
 					NewFlashRate=5000;
 				break;
 				case "emerg":
@@ -123,7 +119,6 @@ function UpdateLoaded(){
 }
 function FlashBorder(){
 	if (DoFlashBorder){
-		//FlashScreen();
 		FlashBorderState=!FlashBorderState;
 		if (FlashBorderState){
 			$("#messagingCover").addClass("altBorder");
@@ -149,5 +144,5 @@ function UIReload(){
 	});
 }
 function PageReload(){
-	window.location="display.php?"+(new Date()).getTime();
+	window.location="/?"+(new Date()).getTime();
 }

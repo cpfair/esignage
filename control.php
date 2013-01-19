@@ -36,7 +36,7 @@ $imgs=glob("signage/*");
 			</div>
 			<div class="group">
 				<h2>Snow</h2>
-				<input type="button" id="btnSnow" value="Make it snow!" onclick="UISetConfig('snow',true);UISetConfig('Reload',true);"/><input type="button" id="btnNoSnow" value="Turn Off" onclick="UISetConfig('snow',false);UISetConfig('Reload',true);"/>
+				<input type="button" id="btnSnow" value="Make it snow!" onclick="UISetConfig('Snow',true);UISetConfig('Reload',true);"/><input type="button" id="btnNoSnow" value="Turn Off" onclick="UISetConfig('Snow',false);UISetConfig('Reload',true);"/>
 			</div>
 			<div class="group">
 				<h2>Message Bar</h2>

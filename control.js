@@ -14,7 +14,7 @@ function EnterHandler(e,handler){
 	}
 }
 function SetImage(){
-	UISetConfig("src",$("#imgSelect").val());
+	UISetConfig("Src",$("#imgSelect").val());
 }
 
 function SetMessageBar(){
@@ -60,12 +60,11 @@ function UISyncState(){
 		$("#btnOff").removeClass("active");
 	}
 	
-	UIToggle(GetConfig("snow"),"btnSnow","btnNoSnow");
+	UIToggle(GetConfig("Snow"),"btnSnow","btnNoSnow");
 	
 	UIToggle(GetConfig("MessageBarBottom"),"msgBarBottom","msgBarTop");
 	
 	$("#ovvrGroup input").removeClass("active");
 	$("#btnProfile"+GetConfig("EmergProfile")).addClass("active");
-	//alert("#btnProfile"+GetConfig("EmergProfile"));
 
 }
